@@ -80,8 +80,11 @@ class ProductController extends Controller
         $product->short_description = $request->short_description;
         $product->full_description  = $request->full_description;
         $product->user_id           = Auth::user()->id;
+        $product->category_id       = $request->category;
 
         $product->save();
+
+        $product->tags()->sync($request->tags, false);
 
         Toastr::success('Product Added Successfully', 'Success');
         return redirect()->route('admin.product.index');
@@ -171,8 +174,11 @@ class ProductController extends Controller
         $product->short_description = $request->short_description;
         $product->full_description  = $request->full_description;
         $product->user_id           = Auth::user()->id;
+        $product->category_id       = $request->category;
 
         $product->save();
+
+        $product->tags()->sync($request->tags);
 
         Toastr::success('Successfully Updated !', 'Success');
         return redirect()->route('admin.product.index');
@@ -188,8 +194,14 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
 
+        $old_image = public_path('frontend/product-images/'.$product->image);
+
+        if(file_exists($old_image)){
+            @unlink($old_image);
+        }
+
+
         $product->delete();
-        Storage::delete($product->image);
 
         Toastr::warning('Product has been removed!', 'Warning');
         return redirect()->route('admin.product.index');

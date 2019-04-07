@@ -151,6 +151,13 @@
 $(document).ready(function() {
   // SELECT 2
     $('.select-tags').select2();
+    
+    {{--
+    $('.select-tags').select2().val(
+         {!! json_encode($product->tags()->getRelatedIds()) !!}
+       ).trigger('change');
+       --}}
+
 
   // TINYMCE 
     tinymce.init({

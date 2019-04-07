@@ -12,6 +12,10 @@ use Storage;
 
 class CategoryController extends Controller
 {
+
+    // public function __construct(){
+    //     $this->middleware('auth', 'admin');
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -129,7 +133,15 @@ class CategoryController extends Controller
         $category = Category::find($id);
 
         $image = $category->image;
-        Storage::delete($image);
+        $old_image = public_path('frontend/category-images/'. $image);
+
+
+        if (file_exists($old_image)) {
+
+               @unlink($old_image);
+
+           }
+
         $category->delete();
 
         Toastr::warning('Category has Deleted', 'Warning');
