@@ -69,7 +69,7 @@
 
           @foreach($product->tags as $tag)
 
-          <p><i>{{ $tag->name }}</i></p>
+          <span class="badge badge-secondary">{{ $tag->name }}</span>
 
           @endforeach
         </div>

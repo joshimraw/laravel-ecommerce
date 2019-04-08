@@ -3,6 +3,10 @@
 
 @section('title', ' | All Categories')
 
+@push('styles')
+  <link rel="stylesheet" href="{{asset('css/parsley.css')}}">
+@endpush
+
 @section('content')
 
  <main class="app-content">
@@ -17,17 +21,23 @@
   </div>
 
 <div class="tile">
-  <form class="row" action="{{route('admin.category.store')}}" method="post" enctype="multipart/form-data">
+  <form class="row" action="{{route('admin.category.store')}}"  method="post" enctype="multipart/form-data" data-parsley-validate>
     @csrf
 
     <div class="form-group col-md-5">
       <label class="control-label">Category Name</label>
-      <input class="form-control" name="name" type="text" placeholder="Category Name">
+      <input class="form-control" name="name" type="text" placeholder="Category Name" required>
     </div>
     <div class="form-group col-md-3">
       <label class="control-label">Category Image</label>
-      <input class="form-control" type="file" name="image" placeholder="Category Image">
+      <input class="form-control" type="file" name="image" placeholder="Category Image" required>
     </div>
+
+        <div class="form-group col-md-3">
+      <label class="control-label">test </label>
+      <input class="form-control" type="number" data-parsley-min="1" required>
+    </div>
+
     <div class="form-group col-md-2 align-self-end">
       <button class="btn btn-primary" type="submit">
         <i class="fa fa-fw fa-lg fa-check-circle"></i>Add Category</button>
@@ -90,6 +100,7 @@
 @endsection
 
 @push('scripts')
+    <script src="{{asset('js/parsley.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('backend/js/plugins/jquery.dataTables.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('backend/js/plugins/dataTables.bootstrap.min.js')}}"></script>
     <script type="text/javascript">
