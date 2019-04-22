@@ -3,8 +3,6 @@
 
 @section('title', ' | Admin Dashboard')
 
-   
-
 @section('content')
 
  <main class="app-content">

@@ -7,6 +7,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Role;
 use App\Models\Product;
+use App\Models\Cart;
+use App\Models\Order;
 
 class User extends Authenticatable
 {
@@ -45,5 +47,15 @@ class User extends Authenticatable
 
     public function products(){
         return $this->hasMany('App\Models\Product');
+    }
+
+    public function carts(){
+
+        return $this->hasMany('App\Models\Cart');
+    }
+
+    public function orders(){
+
+        return $this->hasMany('App\Models\Order');
     }
 }

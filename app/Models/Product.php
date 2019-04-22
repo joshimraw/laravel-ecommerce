@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Tag;
+use App\Models\Cart;
 
 class Product extends Model
 {
@@ -20,5 +21,9 @@ class Product extends Model
 
     public function tags(){
     	return $this->belongsToMany('App\Models\Tag');
+    }
+
+    public function cart(){
+    	return $this->hasMany('App\Models\Cart');
     }
 }

@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Customer;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Cart;
+use App\Models\Order;
 
 class DashboardController extends Controller
 {
@@ -15,7 +17,11 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard');
+        if(Auth::check()){
+         $orders = Order::where('user_id', Auth::id())->get();
+     }
+
+        return view('customer.dashboard', compact('orders'));
     }
 
     /**

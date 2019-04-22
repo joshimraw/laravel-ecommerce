@@ -4,8 +4,8 @@
     <aside class="app-sidebar">
       <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image">
         <div>
-          <p class="app-sidebar__user-name">John Doe</p>
-          <p class="app-sidebar__user-designation">Frontend Developer</p>
+          <p class="app-sidebar__user-name">{{auth::user()->name }}</p>
+          <p class="app-sidebar__user-designation">{{'Login as '.auth::user()->role->name}}</p>
         </div>
       </div>
       <ul class="app-menu">
@@ -51,6 +51,13 @@
             </a>
           </li>
           </ul>
+        </li>
+
+         <li>
+          <a class="app-menu__item {{Request::is('admin/order*') ? 'active' : '' }}" href="{{route('admin.order.index')}}"><i class="app-menu__icon fa fa-tag fa-lg">
+            
+            </i><span class="app-menu__label">Orders</span>
+          </a>
         </li>
         
         <hr>

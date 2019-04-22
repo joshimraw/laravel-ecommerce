@@ -16,7 +16,7 @@
     </div>
     <ul class="app-breadcrumb breadcrumb">
       <li class="breadcrumb-item"><a href="#">{{ Auth::user()->name }} </a></li>
-      <li class="breadcrumb-item"><a href="#">{{ date('M j, Y H:i', time()) }} </a></li>
+      <li class="breadcrumb-item"><a href="#">{{ date('M j, Y - g:i A', time()) }} </a></li>
     </ul>
   </div>
 
@@ -31,11 +31,6 @@
     <div class="form-group col-md-3">
       <label class="control-label">Category Image</label>
       <input class="form-control" type="file" name="image" placeholder="Category Image" required>
-    </div>
-
-        <div class="form-group col-md-3">
-      <label class="control-label">test </label>
-      <input class="form-control" type="number" data-parsley-min="1" required>
     </div>
 
     <div class="form-group col-md-2 align-self-end">

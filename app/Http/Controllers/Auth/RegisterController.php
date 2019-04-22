@@ -45,7 +45,7 @@ class RegisterController extends Controller
 
         }else{
 
-            $this->redirectTo = route('author.dashboard');
+            $this->redirectTo = route('customer.dashboard');
 
         }
 
