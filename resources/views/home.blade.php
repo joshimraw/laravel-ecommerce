@@ -1,6 +1,6 @@
 @extends('frontend.layout')
 
-@section('title', ' | Welcome')
+@section('title', ' | A trusted online store')
 
 
 @section('content')
@@ -15,17 +15,17 @@
       </ol>
       <div class="carousel-inner">
          <div class="carousel-item active">
-            <img src="{{asset('frontend/images/banner1.jpg')}}" class="d-block w-100" alt="">
+            <img src="{{asset('storage/images/banner1.jpg')}}" class="d-block w-100" alt="">
             <div class="carousel-caption d-none d-md-block">
                <h2>A Trusted Online Store in Dhaka</h2>
                <h4>Nulla vitae elit libero, a pharetra augue mollis interdum.</h4>
             </div>
          </div>
          <div class="carousel-item">
-            <img src="{{asset('frontend/images/banner2.jpg')}}" class="d-block w-100" alt="">
+            <img src="{{asset('storage/images/banner2.jpg')}}" class="d-block w-100" alt="">
          </div>
          <div class="carousel-item">
-            <img src="{{asset('frontend/images/banner3.jpg')}}" class="d-block w-100" alt="">
+            <img src="{{asset('storage/images/banner3.jpg')}}" class="d-block w-100" alt="">
          </div>
       </div>
    </div>
@@ -45,7 +45,7 @@
                <div class="char_content">
                 <a href="#">
                   <div class="char_title">{{ $category->name }}</div>
-                  <div class="char_subtitle">Product 20</div>
+                  <div class="char_subtitle">{{ $category->products->count() }}</div>
                 </a>
                </div>
             </div>
@@ -62,19 +62,19 @@
       <div class="row">
          <div class="col-md-4">
             <div class="hot-offer">
-               <img src="{{asset('frontend/images/headphone.png')}}" alt="">
+               <img src="{{asset('storage/images/headphone.png')}}" alt="">
             </div>
          </div>
          <div class="col-md-8">
             <div class="row">
                 
-            @foreach($products as $product)
+            @foreach($recent_products as $product)
 
                <div class="col-md-4">
                   <div class="trends_item is_new">
                      <a href="{{route('product.detail', $product->slug)}}">
                      <div class="trends_image d-flex flex-column align-items-center justify-content-center">
-                        <img src="{{asset('frontend/product-images/'. $product->image)}}" alt="">
+                        <img src="{{asset('storage/products/'. $product->image)}}" alt="">
                      </div>
                      <div class="trends_content">
                         <div class="trends_category">
@@ -117,26 +117,26 @@
          </div>
          <div class="line"></div>
 
-         @foreach($products as $product)
+         @foreach($new_products as $n_product)
 
                <div class="col-md-3">
                   <div class="trends_item is_new">
-                     <a href="{{route('product.detail', $product->slug)}}">
+                     <a href="{{route('product.detail', $n_product->slug)}}">
                      <div class="trends_image d-flex flex-column align-items-center justify-content-center">
-                        <img src="{{asset('frontend/product-images/'. $product->image)}}" alt="">
+                        <img src="{{asset('storage/products/'. $n_product->image)}}" alt="">
                      </div>
                      <div class="trends_content">
                         <div class="trends_category">
-                           <a href="JavaScript:void(0)">{{ $product->category->name }}</a>
+                           <a href="JavaScript:void(0)">{{ $n_product->category->name }}</a>
                         </div>
                         <div class="trends_info clearfix">
                            <div class="trends_name">
-                            <a href="{{route('product.detail', $product->slug)}}">{{ $product->title }}</a>
+                            <a href="{{route('product.detail', $n_product->slug)}}">{{ $n_product->title }}</a>
                            </div>
                            <hr>
-                           <div class="trends_price">TK {{ $product->price }}</div>
+                           <div class="trends_price">TK {{ $n_product->price }}</div>
                            <div class="trends_view">
-                               <a class="btn btn-sm btn-danger" href="">Quick View</a>
+                               <a class="btn btn-sm btn-danger" href="{{route('product.detail', $n_product->slug)}}">Quick View</a>
                            </div>
                         </div>
                      </div>

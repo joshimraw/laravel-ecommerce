@@ -13,10 +13,11 @@ class HomeController extends Controller
 
     public function index()
     {
-    	$categories = Category::all();
-    	$products = Product::all();
+    	$categories = Category::latest()->take('4')->get();
+    	$recent_products = Product::latest()->take('3')->get();
+    	$new_products = Product::latest()->take('6')->get();
 
 
-        return view('home', compact('categories', 'products'));
+        return view('home', compact('categories', 'recent_products', 'new_products'));
     }
 }

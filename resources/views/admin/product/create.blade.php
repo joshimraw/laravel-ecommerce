@@ -39,6 +39,11 @@
                     <input type="text" name="title"
                     class="form-control" placeholder="Product Name">
                   </div>
+                  <div class="form-group">
+                      <label class="control-label">Feature Image</label>
+                      <input type="file" name="feature_image" class="form-control">
+                  </div>
+
                   <div class="row">
                     <div class="form-group col-md-6">
                       <label class="control-label">Price</label>
@@ -113,8 +118,17 @@
 
                     <div class="form-group">
                       <label class="control-label">Image</label>
-                      <input type="file" name="photo" class="form-control">
+                      <input type="file" name="product_images[]" class="form-control">
                     </div>
+                    <div class="form-group">
+                      <label class="control-label">Image</label>
+                      <input type="file" name="product_images[]" class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label">Image</label>
+                      <input type="file" name="product_images[]" class="form-control">
+                    </div>
+
                 </div>
             </div>
           </div> {{-- end column 4 --}}

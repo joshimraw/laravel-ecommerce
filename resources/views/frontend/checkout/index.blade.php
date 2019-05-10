@@ -1,9 +1,14 @@
 @extends('frontend.layout')
 
-@section('title', ' | Welcome')
+@section('title', ' | Checkout ')
 
+@push('styles')
+	<link rel="stylesheet" href="{{asset('frontend/css/product_styles.css')}}">
+	<link rel="stylesheet" href="{{asset('frontend/css/product_responsive.css')}}">
+@endpush
 
 @section('content')
+@include('frontend.partials.nav')
 
 
 <div class="single_product">

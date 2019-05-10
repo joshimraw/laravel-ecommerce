@@ -62,6 +62,10 @@
                 <td>{{ $key + 1 }}</td>
                 <td>{{ $cat->name }}</td>
                 <td>{{ $cat->image }}</td>
+    
+                  {{-- <img src="{{asset('storage/categories/'.$cat->image)}}"> --}}
+            
+
                 <td>{{ date('M j, Y', time($cat->created_at)) }}</td>
                 <td class="text-center">
                   <a class="btn btn-sm btn-primary" href="{{route('admin.category.edit', $cat->id)}}"> 

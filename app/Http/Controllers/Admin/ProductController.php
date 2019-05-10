@@ -5,13 +5,15 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 use Brian2694\Toastr\Facades\Toastr;
 
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Tag;
-use Image;
-use Storage;
+use App\Models\Pimage;
+
 
 class ProductController extends Controller
 {
@@ -59,23 +61,24 @@ class ProductController extends Controller
 
         $slug = str_slug($request->title);
 
-        if($request->hasFile('photo')){
-            $image = $request->file('photo');
+        if($request->hasFile('feature_image')){
+            $image = $request->file('feature_image');
             $img_name = $slug.'.'.$image->getClientOriginalExtension();
-            $location = public_path('frontend/product-images/'.$img_name);
-            Image::make($image)->save($location);
-        }else{
-            $img_name = 'defautl.png';
+            $product_img = Image::make($image)->save();
+
+            Storage::disk('public')->put('products/'.$img_name, $product_img);
+
         }
 
         $product = new Product;
+
         $product->title         = $request->title;
         $product->slug          = $slug;
         $product->image         = $img_name;
         $product->price         = $request->price;
         $product->brand         = $request->brand;
         $product->sku           = $request->sku;
-        $product->is_stock      = $request->stock;
+        $product->stock         = $request->stock;
         $product->view_count    = '0';
         $product->short_description = $request->short_description;
         $product->full_description  = $request->full_description;
@@ -83,6 +86,22 @@ class ProductController extends Controller
         $product->category_id       = $request->category;
 
         $product->save();
+
+        if(count($request->product_images) > 0){
+
+            foreach($request->product_images as $image){
+
+                $img_path = $slug.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+                $p_img = Image::make($image)->save();
+
+                Storage::disk('public')->put('products/'.$img_path, $p_img);
+
+                $pimage = new Pimage;
+                $pimage->product_id = $product->id;
+                $pimage->name = $img_path;
+                $pimage->save();
+            }
+        }
 
         $product->tags()->sync($request->tags, false);
 
@@ -153,8 +172,8 @@ class ProductController extends Controller
         $slug = str_slug($request->title);
 
 
-        if($request->hasFile('photo')){
-            $image = $request->file('photo');
+        if($request->hasFile('feature_image')){
+            $image = $request->file('feature_image');
             $img_name = $slug.'.'.$image->getClientOriginalExtension();
             $location = public_path('frontend/product-images/'.$img_name);
             Image::make($image)->save($location);
@@ -169,7 +188,7 @@ class ProductController extends Controller
         $product->price         = $request->price;
         $product->brand         = $request->brand;
         $product->sku           = $request->sku;
-        $product->is_stock      = $request->stock;
+        $product->stock      = $request->stock;
         $product->view_count    = '0';
         $product->short_description = $request->short_description;
         $product->full_description  = $request->full_description;

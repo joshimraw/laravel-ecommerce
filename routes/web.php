@@ -35,11 +35,6 @@ Route::group(['as'=>'customer.', 'prefix'=>'customer', 'namespace'=>'Customer', 
 Auth::routes();
 
 
-// 	FORNTEND ROUTE ===================
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('product/{slug}', ['as'=>'product.detail', 'uses'=>'ProductController@detail']);
-
-
 Route::group(['prefix'=>'carts'], function(){
 	Route::get('index', ['as'=>'carts.index', 'uses'=>'CartController@index']);
 	Route::post('/store/{id}', ['as'=>'carts.store', 'uses'=>'CartController@store']);
@@ -57,4 +52,39 @@ Route::group(['prefix'=>'order'], function(){
 	
 	Route::post('/store', ['as'=>'order.store', 'uses'=>'OrderController@store']);
 	
+});
+
+// 	FORNTEND PAGEs ROUTE ===================
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('product/{slug}', ['as'=>'product.detail', 'uses'=>'ProductController@detail']);
+
+// OTHERS PAGES in PageController ==========
+Route::get('category/{slug}', ['as'=>'category.show', 'uses'=>'PageController@getCategory']);
+Route::get('/search', ['as'=>'search', 'uses'=>'PageController@getSearch']);
+
+Route::get('/about', ['as'=>'about', 'uses'=>'PageController@getAbout']);
+Route::get('/contact', ['as'=>'contact', 'uses'=>'PageController@getContact']);
+Route::get('/terms-conditions', ['as'=>'terms-conditions', 'uses'=>'PageController@getTermscondition']);
+
+
+// RUN CONFIGURATION ROUTE ===========
+
+// Clear Configuration
+Route::get('/config-clear', function() {
+	Artisan::call('config:clear');
+});
+
+//Clear cache:
+Route::get('/cache-clear', function() {
+	Artisan::call('cache:clear');
+});
+
+//Clear configuration cache:
+Route::get('/config-cache', function() {
+	Artisan::call('config:Cache');
+	});
+
+// Generate app key
+Route::get('/key', function(){
+     Artisan::call('key:generate');
 });

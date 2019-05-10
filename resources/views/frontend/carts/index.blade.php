@@ -1,6 +1,6 @@
 @extends('frontend.layout')
 
-@section('title', ' | Welcome')
+@section('title', ' | Carts')
 
 @push('styles')
 	<link rel="stylesheet" href="{{asset('frontend/css/product_styles.css')}}">
@@ -8,7 +8,7 @@
 @endpush
 
 @section('content')
-
+@include('frontend.partials.nav')
 
   <div class="single_product">
 		<div class="container">
@@ -17,11 +17,11 @@
 			<div class="col-md-9">
 				<h4>There is {{ $carts->count() }} Cart </h4>
 				@if($carts->count() > 0)
-				<table class="table">
+				<table class="table table-responsive-sm">
 					<thead>
 						<tr>
 							<th>SL</th>
-							<th>Product Name</th>
+							<th>Product</th>
 							<th>Image</th>
 							<th>Price</th>
 							<th>Quantity</th>
@@ -38,7 +38,7 @@
 							<td>{{ $loop->index + 1 }}</td>
 							<td>{{ $cart->product->title }}</td>
 							<td>
-								<img src="{{ asset('frontend/product-images/'.$cart->product->image) }}" width="100">
+								<img src="{{ asset('storage/products/'.$cart->product->image) }}" width="100">
 							</td>
 							<td>{{ 'TK '.$cart->product->price }}</td>
 							<td>

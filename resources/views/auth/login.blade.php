@@ -18,7 +18,7 @@
 
     <section class="login-content">
       <div class="logo">
-        <h1>Welcome to Eghuri</h1>
+        <h1>Welcome to Eghuri.com</h1>
       </div>
       <div class="login-box">
         <form class="login-form" action="{{route('login')}}" method="post">

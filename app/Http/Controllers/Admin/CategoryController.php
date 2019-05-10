@@ -5,10 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
-
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 use App\Models\Category;
-use Image;
-use Storage;
 
 class CategoryController extends Controller
 {
@@ -47,8 +46,9 @@ class CategoryController extends Controller
         if($request->hasFile('image')){
             $image = $request->file('image');
             $image_name = $slug. '.' .$image->getClientOriginalExtension();
-            $location = public_path('frontend/category-images/'. $image_name);
-            Image::make($image)->save($location);
+            $category_img = Image::make($image)->save();
+
+            Storage::disk('public')->put('categories/'.$image_name, $category_img);
         }
 
         $cat = new Category;

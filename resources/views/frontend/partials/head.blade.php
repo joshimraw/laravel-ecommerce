@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Eghuri @yield('title')</title>
     
+    <link rel="shortcut icon" href="{{asset('storage/images/apple-icon-60x60.png')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('frontend/css/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('frontend/css/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('frontend/css/plugins/OwlCarousel2-2.2.1/owl.carousel.css')}}">

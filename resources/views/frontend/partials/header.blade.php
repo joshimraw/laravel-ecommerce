@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col d-flex flex-row">
             <div class="top_bar_contact_item"><i class="fa fa-phone"></i> 01715 779128</div>
-            <div class="top_bar_contact_item"><i class="fa fa-envelope"></i> hello@eghuri.com</div>
+            <div class="top_bar_contact_item" id="topbarmail"><i class="fa fa-envelope"></i> hello@eghuri.com</div>
             <div class="top_bar_content ml-auto">
               
               <div class="top_bar_user">
@@ -50,7 +50,7 @@
           <div class="col-lg-3 col-sm-3 col-3 order-1">
             <div class="logo_container">
               <div class="logo"><a href="/">
-                <img src="{{asset('frontend/images/ghuri.png')}}" alt="">
+                <img src="{{asset('storage/images/ghuri.png')}}" alt="">
               </a></div>
             </div>
           </div>
@@ -60,20 +60,11 @@
             <div class="header_search">
               <div class="header_search_content">
                 <div class="header_search_form_container">
-                  <form action="#" class="header_search_form clearfix">
-                    <input type="search" required="required" class="header_search_input" placeholder="Search for products">
-                    <div class="custom_dropdown">
-                      <div class="custom_dropdown_list">
-                        <span class="custom_dropdown_placeholder clc">All Categories</span>
-                        <i class="fas fa-chevron-down"></i>
-                        <ul class="custom_list clc">
-                          <li><a class="clc" href="#">All Categories</a></li>
-                          <li><a class="clc" href="#">Kids & Toys</a></li>
-                          <li><a class="clc" href="#">Women's Fashion</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                    <button type="submit" class="header_search_button trans_300" value="Submit"><img src="{{asset('frontend/images/search.png')}}" alt=""></button>
+                  <form action="{{route('search')}}" class="header_search_form clearfix" method="get">
+                  
+                    <input type="text" required="required" class="header_search_input" placeholder="Search for products" name="query">
+                    
+                    <button type="submit" class="header_search_button trans_300" value="Submit"><img src="{{asset('storage/images/search.png')}}" alt=""></button>
                   </form>
                 </div>
               </div>
@@ -89,7 +80,7 @@
                 </div>
                 <div class="wishlist_content">
                   <div class="wishlist_text"><a href="#">Wishlist</a></div>
-                  <div class="wishlist_count">115</div>
+                  <div class="wishlist_count">0</div>
                 </div>
               </div>
 

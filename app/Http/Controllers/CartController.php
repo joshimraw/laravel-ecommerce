@@ -10,14 +10,15 @@ use Brian2694\Toastr\Facades\Toastr;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Category;
 
 class CartController extends Controller
 {
     public function index(){
-
+        $categories = Category::all();
     	$carts = Cart::totalCarts();
 
-    	return view('frontend.carts.index', compact('carts'));
+    	return view('frontend.carts.index', compact('carts', 'categories'));
     }
 
 

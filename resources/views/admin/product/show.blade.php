@@ -40,7 +40,7 @@
           <p>{!! $product->short_description !!}</p>
           <hr>
 
-          <img src="{{asset('frontend/product-images/'. $product->image)}}" alt="">
+          <img class="img-fluid" src="{{asset('storage/products/'. $product->image)}}" alt="">
 
 
         </div>
@@ -67,11 +67,22 @@
         <div class="tile-body">
           <p>{!! $product->full_description !!}</p>
 
+          @foreach($product->pimages as $p)
+            <ul>
+              <li>{{$p->name}}</li>
+            </ul>
+          @endforeach
+
           @foreach($product->tags as $tag)
 
           <span class="badge badge-secondary">{{ $tag->name }}</span>
 
           @endforeach
+
+
+          
+
+
         </div>
       </div>
     </div>
